@@ -1,0 +1,19 @@
+{
+  "files": {
+    "main.css": "/static/css/main.f105e460.css",
+    "main.js": "/static/js/main.8622c0ab.js",
+    "static/js/920.4c38a05e.chunk.js": "/static/js/920.4c38a05e.chunk.js",
+    "static/js/0.f80c9f4c.chunk.js": "/static/js/0.f80c9f4c.chunk.js",
+    "static/js/808.9abc30f7.chunk.js": "/static/js/808.9abc30f7.chunk.js",
+    "static/media/national.jpeg": "/static/media/national.13bc641cd2bcf22691c9.jpeg",
+    "static/media/image3.jpeg": "/static/media/image3.6c958d1bce9110a72e3c.jpeg",
+    "static/media/image2.jpeg": "/static/media/image2.00630e1db16c169ff097.jpeg",
+    "static/media/image1.jpeg": "/static/media/image1.f24b285217cad80e939b.jpeg",
+    "static/media/rhipfactory.png": "/static/media/rhipfactory.79bc7ce6f4d4d990e9f7.png",
+    "index.html": "/index.html"
+  },
+  "entrypoints": [
+    "static/css/main.f105e460.css",
+    "static/js/main.8622c0ab.js"
+  ]
+}
