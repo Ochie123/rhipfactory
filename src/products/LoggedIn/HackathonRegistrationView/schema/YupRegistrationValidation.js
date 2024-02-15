@@ -1,26 +1,25 @@
 import * as Yup from "yup"
 
 export const YupRegistrationValidation = Yup.object().shape({
-  category: Yup.string().max(255).required(),
-  make: Yup.string().max(255).required(),
-  model: Yup.string().max(255).required(),
-  type: Yup.string().max(255).required(),
+  supported_ages: Yup.string().max(255).required(),
+  supported_years: Yup.string().max(255).required(),
+  sex_choices: Yup.string().max(255).required(),
+  participation: Yup.string().max(255).required(),
+  experience: Yup.string().max(5000).required(),
+  hear_us: Yup.string().max(5000).required(),
+  linkedin: Yup.string().max(5000).required(),
   overview: Yup.string().max(5000).required(),
-  duration: Yup.string().max(5000).required(),
-  year: Yup.string().max(5000).required(),
-  start_time: Yup.date()
-  .min(new Date(), "Start time must be in the future")
-  .required("Start time is required"),
   name: Yup.string()
     .max(255)
     .required(),
   email: Yup.string()
     .max(255)
     .required(),
-  years: Yup.number().min(0),
-  reserveprice: Yup.number().min(0),
-  software_stack:  Yup.array().min(1, 'Please select at least one stack'),
-  uploaded_images: Yup.array()
-  .min(1, "Minimum 1 files are required")
+  number: Yup.number(),
+  age: Yup.number().required(),
+  software_stack:  Yup.array().min(1, 'Please select at least one')
+  .required("Files are required"),
+  healthcare_problems: Yup.array()
+  .min(1, "A Minimum of 1 problem is required")
   .required("Files are required")
 })

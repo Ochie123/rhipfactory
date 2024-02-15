@@ -34,7 +34,7 @@ import Stack from "@mui/material/Stack";
 import { Link } from "react-router-dom";
 import { styled } from "@mui/material/styles";
 
-import FilesDropzone from "../../../components/Files-Dropzone";
+
 import QuillEditor from "../../../components/Quill-Editor";
 import Timer2 from "view/Homepage/Timer2";
 import { YupRegistrationValidation } from "./schema/YupRegistrationValidation"
@@ -85,6 +85,27 @@ const HackathonCreateForm = props => {
       // Add more specifications as needed
     ]
   };
+  const healthcareProblemsData = {
+    results: [
+      { id: 1, name: "Ease of accessing healthcare." },
+      { id: 2, name: "Cost of healthcare services." },
+      { id: 3, name: "Quality of healthcare outcomes" },
+      { id: 5, name: "Better information & data on health services" },
+      { id: 6, name: "Shortage of healthcare workers." },
+      { id: 7, name: "Fake & substandard drugs" },
+      { id: 8, name: "Poor customer experience in health facilities" },
+    ]
+  };
+  const registrationChoicesData = {
+    supported_ages: [["<20s", ">20s"],["20s", "20s"], ["30's", "30's"], ["40's", "40's"], ["50's", "50's"], [">60's", ">60's"]],
+    supported_years: [["Zero", "Zero"], ["1 - 2 Years", "1 - 2 Years"], ["3 - 5 Years", "3 - 5 Years"],["More than 5 Years", "More than 5 Years"], ],
+    sex_choices: [["male", "Male"], ["female", "Female"], ["prefer not to say", "Prefer not to say"]],
+    participation: [["yes", "Yes"], ["no", "No"]],
+    experience: [["yes", "Yes"], ["no", "No"]],
+    hear_us: [["word of mouth", "Word of Mouth"], ["online advert", "Online Advert"], ["social media", "Social Media"],["website", "Website"],["other", "Other"]]
+  };
+
+
   const [justEnded, setJustEnded] = useState(false)
   const currentDate = new Date()
    const update = () => {
@@ -98,6 +119,7 @@ const HackathonCreateForm = props => {
  
 
   const softwareStacks = softwareStacksData.results;
+  const healthcareProblems = healthcareProblemsData.results;
 
   function getStyles(car_specification, personCar_specification, theme) {
     return {
@@ -111,6 +133,7 @@ const HackathonCreateForm = props => {
  
   //const [car_specifications, setCarSpecifications] = useState([]);
   const [personSoftware_stack, setPersonSoftware_stack] = useState([]);
+  const [personHealthcare_Problem, setpersonHealthcare_Problem] = useState([]);
 
   //const [personName, setPersonName] = React.useState([]);
 
@@ -127,8 +150,13 @@ const HackathonCreateForm = props => {
       // On autofill we get a stringified value.
       typeof value === 'string' ? value.split(',') : value,
     );
+    setpersonHealthcare_Problem(
+      // On autofill we get a stringified value.
+      typeof value === 'string' ? value.split(',') : value,
+    );
   };
 
+  
   
   const { enqueueSnackbar } = useSnackbar()
   const [error, setError] = useState("")
@@ -143,9 +171,7 @@ const HackathonCreateForm = props => {
         console.log(values);
         try {
           const formData = new FormData();
-          values.uploaded_images.forEach((file, index) => {
-            formData.append(`uploaded_images[${index}]`, file);
-          });
+    
           // Append other form fields to the formData object
           const softwareSpecifications = values.software_stack || []; // Make sure it's an array
 
@@ -153,12 +179,26 @@ const HackathonCreateForm = props => {
             formData.append('software_stack', stack);
           });
    
-      
+          const healthcareSpecifications = values.healthcare_problem || []; // Make sure it's an array
+
+          healthcareSpecifications.forEach(stack => {
+            formData.append('healthcare_problem', stack);
+          });
+        
           formData.append('name', values.name);
    
          // formData.append('car_specification', values.car_specification);
-          formData.append('years', values.years);
-          formData.append('start_time', values.start_time);
+          formData.append('supported_years', values.supported_years);
+          formData.append('supported_ages', values.supported_ages);
+          formData.append('sex_choices', values.sex_choices);
+          formData.append('participation', values.participation);
+          formData.append('experience', values.experience);
+          formData.append('hear_us', values.hear_us);
+          formData.append('email', values.email);
+          formData.append('number', values.number);
+          formData.append('linkedin', values.linkedin);
+          formData.append('age', values.age);
+          formData.append('healthcare_problems', values.healthcare_problems);
   
           formikHelpers.setStatus({ success: true });
           formikHelpers.setSubmitting(false);
@@ -228,21 +268,42 @@ const HackathonCreateForm = props => {
                       <Grid item xs={12} md={6}>
                         <TextField
                           error={Boolean(
-                            formikProps.touched.email &&
-                              formikProps.errors.email
+                            formikProps.touched.number &&
+                              formikProps.errors.number
                           )}
                           fullWidth
                           helperText={
-                            formikProps.touched.email &&
-                            formikProps.errors.email
-                              ? formikProps.errors.email
+                            formikProps.touched.number &&
+                            formikProps.errors.number
+                              ? formikProps.errors.number
+                              : "This is optional: Your Phone Number."
+                          }
+                          label="Your Phone Number"
+                          name="number"
+                          onBlur={formikProps.handleBlur}
+                          onChange={formikProps.handleChange}
+                          value={formikProps.values.number}
+                          variant="outlined"
+                        />
+                      </Grid>
+                      <Grid item xs={12} md={6}>
+                        <TextField
+                          error={Boolean(
+                            formikProps.touched.linkedin &&
+                              formikProps.errors.linkedin
+                          )}
+                          fullWidth
+                          helperText={
+                            formikProps.touched.linkedin &&
+                            formikProps.errors.linkedin
+                              ? formikProps.errors.linkedin
                               : " Your LinkedIn Profile."
                           }
                           label="Your LinkedIn Profile"
-                          name="email"
+                          name="linkedin"
                           onBlur={formikProps.handleBlur}
                           onChange={formikProps.handleChange}
-                          value={formikProps.values.email}
+                          value={formikProps.values.linkedin}
                           variant="outlined"
                         />
                       </Grid>
@@ -276,188 +337,233 @@ const HackathonCreateForm = props => {
               <CardHeader title="Hackathon Details" />
               <CardContent>
               <Box mt={3} mb={1}>
+            
                     <Typography variant="subtitle2" color="textSecondary">
-                      Which Healthcare Problem Area would you like to solve for Kenyans?
+                    Which Healthcare Problem Area would you like to solve for Kenyans?
                     </Typography>
-                  </Box>
-              <Grid container spacing={3}>
+               
+              <FormControl sx={{ m: 1, width: 300 }}>
+        <InputLabel id="demo-multiple-chip-label">Healthcare Problems</InputLabel>
+        <Field
+          as={Select}
+          labelId="demo-multiple-chip-label"
+          id="demo-multiple-chip"
+          multiple
+          name="healthcare_problem"
+          input={<OutlinedInput id="select-multiple-chip" label="Chip" />}
+          onBlur={formikProps.handleBlur}
+          error={formikProps.touched.healthcare_problem && Boolean(formikProps.errors.healthcare_problem)}
+          helperText={formikProps.touched.healthcare_problem && formikProps.errors.healthcare_problem}
+          variant="outlined"
+          renderValue={(selected) => (
+            <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
+           {selected.map((value) => {
+      const healthcareProblem = healthcareProblems.find(spec => spec.id === value);
+      return (
+        <Chip key={value} onDelete={handleDelete(value)} label={healthcareProblem ? healthcareProblem.name : ''} />
+      );
+    })}
+            </Box>
+          )}
+          onChange={(event) => {
+            formikProps.setFieldValue('healthcare_problem', event.target.value);
+          }}
+          
+          
+          value={formikProps.values.healthcare_problem || []}
+        >
+          {healthcareProblems.map(healthcare_problem => (
+            <MenuItem
+              key={healthcare_problem.id}
+              value={healthcare_problem.id}
+              style={getStyles( healthcare_problem,personHealthcare_Problem, theme)}
+            >
+              {healthcare_problem.name}
+            </MenuItem>
+          ))}
 
-                      <Grid item xs={12} md={6}>
-                        
-                      <Box mt={2}>
-                      <FormControlLabel
-                        control={
-                          <Checkbox
-                            checked={formikProps.values.isTaxable}
-                            onChange={formikProps.handleChange}
-                            value={formikProps.values.isTaxable}
-                            name="isTaxable"
-                          />
-                        }
-                        label="Ease of accessing healthcare"
-                      />
+        </Field>
+
+      </FormControl>
+      <Box mt={3}>
+      <Typography variant="subtitle2" color="textSecondary">
+                    Other problems you would like to solve for Kenyans.
+                    </Typography>
                     </Box>
-                    <Box mt={2}>
-                      <FormControlLabel
-                        control={
-                          <Checkbox
-                            checked={formikProps.values.includesTaxes}
-                            onChange={formikProps.handleChange}
-                            value={formikProps.values.includesTaxes}
-                            name="includesTaxes"
-                          />
-                        }
-                        label="Cost of healthcare services"
-                      />
-                    </Box>
-                      </Grid>
-                    </Grid>
-                    <Box mt={2}>
-                      <FormControlLabel
-                        control={
-                          <Checkbox
-                            checked={formikProps.values.includesTaxes}
-                            onChange={formikProps.handleChange}
-                            value={formikProps.values.includesTaxes}
-                            name="includesTaxes"
-                          />
-                        }
-                        label="Quality of healthcare outcomes"
-                      />
-                    </Box>
-  
-                    <Box mt={2}>
-                      <FormControlLabel
-                        control={
-                          <Checkbox
-                            checked={formikProps.values.includesTaxes}
-                            onChange={formikProps.handleChange}
-                            value={formikProps.values.includesTaxes}
-                            name="includesTaxes"
-                          />
-                        }
-                        label="Better information & data on health services"
-                      />
-                    </Box>
-                    <Box mt={2}>
-                      <FormControlLabel
-                        control={
-                          <Checkbox
-                            checked={formikProps.values.includesTaxes}
-                            onChange={formikProps.handleChange}
-                            value={formikProps.values.includesTaxes}
-                            name="includesTaxes"
-                          />
-                        }
-                        label="Shortage of healthcare workers."
-                      />
-                    </Box>
-  
-                    <Box mt={2}>
-                      <FormControlLabel
-                        control={
-                          <Checkbox
-                            checked={formikProps.values.includesTaxes}
-                            onChange={formikProps.handleChange}
-                            value={formikProps.values.includesTaxes}
-                            name="includesTaxes"
-                          />
-                        }
-                        label="Fake & substandard drugs."
-                      />
-                    </Box>
-                    <Box mt={2}>
-                      <FormControlLabel
-                        control={
-                          <Checkbox
-                            checked={formikProps.values.includesTaxes}
-                            onChange={formikProps.handleChange}
-                            value={formikProps.values.includesTaxes}
-                            name="includesTaxes"
-                          />
-                        }
-                        label="Poor customer experience in health facilities."
-                      />
                     </Box>
   
                   <Paper variant="outlined">
                     <QuillEditor
                       className=""
-                      value={formikProps.values.overview}
+                      value={formikProps.values.healthcare_problems}
                       onChange={value =>
-                        formikProps.setFieldValue("overview", value)
+                        formikProps.setFieldValue("healthcare_problems", value)
                       }
                     />
                   </Paper>
-                  {formikProps.touched.overview &&
-                    formikProps.errors.overview && (
+                  {formikProps.touched.healthcare_problems &&
+                    formikProps.errors.healthcare_problems && (
                       <Box mt={2}>
                         <FormHelperText error>
-                          {formikProps.errors.overview}
+                          {formikProps.errors.healthcare_problems}
                         </FormHelperText>
                       </Box>
                     )}
                 </CardContent>
               </Card>
               <Box mt={3}>
-      <Card>
-        <CardHeader title="Upload any supporting documents" />
-        <Divider />
-        <CardContent>
-          <FilesDropzone onFilesChange={(files) => formikProps.setFieldValue('uploaded_images', files)} />
-
-          {formikProps.touched.uploaded_images &&
-            formikProps.errors.uploaded_images && (
-              <Box mt={2}>
-                <FormHelperText error>
-                  {formikProps.errors.uploaded_images}
-                </FormHelperText>
-              </Box>
-            )}
-        </CardContent>
-      </Card>
     </Box>
-              
-              <Box mt={3}>
-                <Card>
-                  <CardHeader title="Years of Experience" />
-                  <Divider />
-                  <CardContent>
-                    <Grid container spacing={3}>
-                      <Grid item xs={12} md={6}>
-                        <TextField
-                          error={Boolean(
-                            formikProps.touched.years &&
-                              formikProps.errors.years
-                          )}
-                          fullWidth
-                          helperText={
-                            formikProps.touched.years &&
-                            formikProps.errors.years
-                              ? formikProps.errors.years
-                              : " Indicate your total years of experience."
-                          }
-                          label="Years"
-                          name="years"
-                          type="number"
-                          onBlur={formikProps.handleBlur}
-                          onChange={formikProps.handleChange}
-                          value={formikProps.values.years}
-                          variant="outlined"
-                        />
-                      </Grid>
-                    </Grid>
-                  </CardContent>
-                </Card>
-              </Box>
+            
 
             </Grid>
+            
             <Grid item xs={12} lg={4}>
+              
               <Card>
-                <CardHeader title="Organize" />
+                <CardHeader title="Other details" />
                 <Divider />
                 <CardContent>
-                <div>
+{registrationChoicesData && (
+ <div>
+
+ <TextField
+   fullWidth
+    label="Age"
+    name="age"
+    select
+    value={formikProps.values.age}
+    onChange={formikProps.handleChange}
+    onBlur={formikProps.handleBlur}
+    error={formikProps.touched.age && Boolean(formikProps.errors.age)}
+    helperText={formikProps.touched.age && formikProps.errors.age}
+    variant="outlined"
+   >
+  <MenuItem value="">Select your age group</MenuItem>
+    {registrationChoicesData.supported_ages.map(([value, label]) => (
+     <MenuItem key={value} value={value}>
+    {label}
+  </MenuItem>
+    ))}
+</TextField>
+<Divider />
+ <br/>
+<TextField
+  fullWidth
+   label="Sex"
+   name="sex_choices"
+  select
+  value={formikProps.values.sex_choices}
+  onChange={formikProps.handleChange}
+  onBlur={formikProps.handleBlur}
+  error={formikProps.touched.sex_choices && Boolean(formikProps.errors.sex_choices)}
+  helperText={formikProps.touched.sex_choices && formikProps.errors.sex_choices}
+  variant="outlined"
+  >
+ <MenuItem value="">Select your Sex</MenuItem>
+   {registrationChoicesData.sex_choices.map(([value, label]) => (
+  <MenuItem key={value} value={value}>
+    {label}
+  </MenuItem>
+ ))}
+</TextField>
+
+<Divider />
+ <br/>
+ <TextField
+  fullWidth
+  label="Participation"
+  name="participation"
+  select
+  value={formikProps.values.participation}
+  onChange={formikProps.handleChange}
+  onBlur={formikProps.handleBlur}
+  error={formikProps.touched.participation && Boolean(formikProps.errors.participation)}
+  helperText={formikProps.touched.participation && formikProps.errors.participation}
+  variant="outlined"
+  >
+  <MenuItem value="">Have you ever participated in a hackathon?</MenuItem>
+  {registrationChoicesData.participation.map(([value, label]) => (
+    <MenuItem key={value} value={value}>
+     {label}
+  </MenuItem>
+  ))}
+  </TextField>
+  <Divider />
+ <br/>
+                <TextField
+      fullWidth
+      label="Experience"
+      name="experience"
+      select
+      value={formikProps.values.experience}
+      onChange={formikProps.handleChange}
+      variant="outlined"
+    >
+      <MenuItem value="">Do you have experience working in a start up?</MenuItem>
+      {registrationChoicesData.experience.map(([value, label]) => (
+        <MenuItem key={value} value={value}>
+          {label}
+        </MenuItem>
+      ))}
+    </TextField>
+
+    <Divider />
+ <br/>
+ 
+               
+                        <TextField
+                          error={Boolean(
+                            formikProps.touched.supported_years &&
+                              formikProps.errors.supported_years
+                          )}
+                          fullWidth
+                     
+                          label="Supported years"
+                          name="supported_years"
+                          select
+                          value={formikProps.values.experience}
+                          onChange={formikProps.handleChange}
+                          variant="outlined"
+                        >
+                              <MenuItem value="">Number of years working in the Tech</MenuItem>
+      {registrationChoicesData.supported_years.map(([value, label]) => (
+        <MenuItem key={value} value={value}>
+          {label}
+        </MenuItem>
+      ))}
+            </TextField>        
+            <Divider />
+ <br/>          
+ <TextField
+                          error={Boolean(
+                            formikProps.touched.hear_us &&
+                              formikProps.errors.hear_us
+                          )}
+                          fullWidth
+                     
+                          label="Hear us"
+                          name="hear_us"
+                          select
+                          value={formikProps.values.hear_us}
+                          onChange={formikProps.handleChange}
+                          variant="outlined"
+                        >
+                              <MenuItem value="">How did you hear us?</MenuItem>
+      {registrationChoicesData.hear_us.map(([value, label]) => (
+        <MenuItem key={value} value={value}>
+          {label}
+        </MenuItem>
+      ))}
+            </TextField>        
+            <Divider />
+ <br/>                
+  </div>
+  )}
+</CardContent>
+
+              <CardContent>
+
+<div>        
       <FormControl sx={{ m: 1, width: 300 }}>
         <InputLabel id="demo-multiple-chip-label">Your Stack</InputLabel>
         <Field
@@ -501,10 +607,11 @@ const HackathonCreateForm = props => {
         </Field>
 
       </FormControl>
-    </div>
+  
+      </div>
+      </CardContent>
 
 
-                    </CardContent>
                     <Divider />
                  <br/>
 
