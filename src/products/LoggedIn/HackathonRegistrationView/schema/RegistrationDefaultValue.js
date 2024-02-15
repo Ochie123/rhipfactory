@@ -11,6 +11,6 @@ export const RegistrationDefaultValue = {
   linkedin: "",
   overview: "",
   other_problems:"",
-  healthcare_problems: "",
+  healthcare_problem: "",
   software_stack: "",
 }

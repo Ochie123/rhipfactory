@@ -13,7 +13,7 @@ import "../src/view/Detail/style.css"
 import MainLayout from '../src/Layout/main-layout/MainLayout'
 
 import theme from "./assets/theme";
-
+import DataProvider from './data';
 
 import { BrowserRouter as Router, Routes, Route} from "react-router-dom";
 import { ThemeProvider } from "@mui/material/styles";
@@ -44,7 +44,8 @@ function App() {
  
 
   return (
-    <>      
+    <> 
+    <DataProvider>    
     <ThemeProvider theme={theme}>
       <GlobalStyle />
       <SnackbarProvider dense maxSnack={3}>
@@ -82,6 +83,7 @@ function App() {
 
       </SnackbarProvider>
       </ThemeProvider>
+      </DataProvider> 
       </>
   );
 }

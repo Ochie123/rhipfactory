@@ -19,7 +19,7 @@ export const YupRegistrationValidation = Yup.object().shape({
   other_problems: Yup.string(),
   software_stack:  Yup.array().min(1, 'Please select at least one')
   .required("Files are required"),
-  healthcare_problems: Yup.array()
+  healthcare_problem: Yup.array()
   .min(1, "A Minimum of 1 problem is required")
   .required("Files are required")
 })
