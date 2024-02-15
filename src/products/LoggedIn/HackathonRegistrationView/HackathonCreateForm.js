@@ -179,13 +179,14 @@ const HackathonCreateForm = props => {
             formData.append('software_stack', stack);
           });
    
-          const healthcareSpecifications = values.healthcare_problem || []; // Make sure it's an array
+          const healthcareSpecifications = values.healthcare_problems || []; // Make sure it's an array
 
           healthcareSpecifications.forEach(stack => {
             formData.append('healthcare_problem', stack);
           });
         
           formData.append('name', values.name);
+          formData.append('overview', values.overview);
    
          // formData.append('car_specification', values.car_specification);
           formData.append('supported_years', values.supported_years);
@@ -197,8 +198,8 @@ const HackathonCreateForm = props => {
           formData.append('email', values.email);
           formData.append('number', values.number);
           formData.append('linkedin', values.linkedin);
-          formData.append('age', values.age);
           formData.append('healthcare_problems', values.healthcare_problems);
+          formData.append('other_problems', values.other_problems);
   
           formikHelpers.setStatus({ success: true });
           formikHelpers.setSubmitting(false);
@@ -349,11 +350,11 @@ const HackathonCreateForm = props => {
           labelId="demo-multiple-chip-label"
           id="demo-multiple-chip"
           multiple
-          name="healthcare_problem"
+          name="other_problems"
           input={<OutlinedInput id="select-multiple-chip" label="Chip" />}
           onBlur={formikProps.handleBlur}
-          error={formikProps.touched.healthcare_problem && Boolean(formikProps.errors.healthcare_problem)}
-          helperText={formikProps.touched.healthcare_problem && formikProps.errors.healthcare_problem}
+          error={formikProps.touched.healthcare_problems && Boolean(formikProps.errors.healthcare_problems)}
+          helperText={formikProps.touched.healthcare_problems && formikProps.errors.healthcare_problems}
           variant="outlined"
           renderValue={(selected) => (
             <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
@@ -370,7 +371,7 @@ const HackathonCreateForm = props => {
           }}
           
           
-          value={formikProps.values.healthcare_problem || []}
+          value={formikProps.values.healthcare_problems || []}
         >
           {healthcareProblems.map(healthcare_problem => (
             <MenuItem
@@ -395,17 +396,17 @@ const HackathonCreateForm = props => {
                   <Paper variant="outlined">
                     <QuillEditor
                       className=""
-                      value={formikProps.values.healthcare_problems}
+                      value={formikProps.values.other_problems}
                       onChange={value =>
-                        formikProps.setFieldValue("healthcare_problems", value)
+                        formikProps.setFieldValue("other_problems", value)
                       }
                     />
                   </Paper>
-                  {formikProps.touched.healthcare_problems &&
-                    formikProps.errors.healthcare_problems && (
+                  {formikProps.touched.other_problems &&
+                    formikProps.errors.other_problems && (
                       <Box mt={2}>
                         <FormHelperText error>
-                          {formikProps.errors.healthcare_problems}
+                          {formikProps.errors.other_problems}
                         </FormHelperText>
                       </Box>
                     )}
@@ -429,13 +430,13 @@ const HackathonCreateForm = props => {
  <TextField
    fullWidth
     label="Age"
-    name="age"
+    name="supported_ages"
     select
-    value={formikProps.values.age}
+    value={formikProps.values.supported_ages}
     onChange={formikProps.handleChange}
     onBlur={formikProps.handleBlur}
-    error={formikProps.touched.age && Boolean(formikProps.errors.age)}
-    helperText={formikProps.touched.age && formikProps.errors.age}
+    error={formikProps.touched.supported_ages && Boolean(formikProps.errors.supported_ages)}
+    helperText={formikProps.touched.supported_ages && formikProps.errors.supported_ages}
     variant="outlined"
    >
   <MenuItem value="">Select your age group</MenuItem>

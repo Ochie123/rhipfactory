@@ -10,7 +10,7 @@ export const RegistrationDefaultValue = {
   number: "",
   linkedin: "",
   overview: "",
-  age:"",
+  other_problems:"",
   healthcare_problems: "",
   software_stack: "",
 }

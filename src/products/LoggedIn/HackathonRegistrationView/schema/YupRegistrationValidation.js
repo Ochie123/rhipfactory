@@ -16,7 +16,7 @@ export const YupRegistrationValidation = Yup.object().shape({
     .max(255)
     .required(),
   number: Yup.number(),
-  age: Yup.number().required(),
+  other_problems: Yup.string(),
   software_stack:  Yup.array().min(1, 'Please select at least one')
   .required("Files are required"),
   healthcare_problems: Yup.array()
