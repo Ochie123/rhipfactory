@@ -521,7 +521,7 @@ const HackathonCreateForm = props => {
                           label="Supported years"
                           name="supported_years"
                           select
-                          value={formikProps.values.experience}
+                          value={formikProps.values.supported_years}
                           onChange={formikProps.handleChange}
                           variant="outlined"
                         >
