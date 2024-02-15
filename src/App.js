@@ -37,10 +37,9 @@ const AboutPage = lazy(() => import('./view/pages/AboutPage'));
 const NotFoundPage = lazy(() => import('./view/pages/NotFoundPage'));
 const ContactUs = lazy(() => import('pages/LandingPages/ContactUs'));
 const Presentation = lazy(()=> import('./pages/Presentation'))
-const PricingPage = lazy(() => import('./products/LoggedIn/pricing/PricingPage'))
 const Places = lazy(() => import('./pages/LandingPages/Author/sections/Posts'))
 const SignInBasic = lazy(() => import('./pages/LandingPages/SignIn'))
-
+const HackathonRegistrationView = lazy(() => import('./products/LoggedIn/HackathonRegistrationView'))
 function App() {
  
 
@@ -67,8 +66,8 @@ function App() {
         <Route path="/about-us" element={<AboutPage />} />
         <Route path="/contact-us" element={<ContactUs />} />
         <Route path='/rhipfactory-for-developers/' element={<Presentation/>}/>
-        <Route path='/pricing' element={<PricingPage/>}/>
         <Route path='/blog' element={<Places/>}/>
+        <Route path='/register' element={<HackathonRegistrationView/>}/>
         <Route path='/sign-in' element={<SignInBasic/>}/>
 
         <Route path='/not-found' element={<NotFoundPage/>} />

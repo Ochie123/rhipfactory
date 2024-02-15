@@ -83,9 +83,9 @@ export default function Promotional({
                         <Stack spacing={2} direction="row">
                           <Box display="flex" alignItems="center" p={2}>
                             <Box>
-                              <Link to={`/`}>
+                              <Link to={`/register`}>
                                 <ColorButton variant="contained">
-                                <Typography variant="h6" component="p" variant="h8"> 
+                                <Typography  component="p" variant="h8"> 
                                   Register today
                                   </Typography><Icon sx={{ fontWeight: "bold" }}>
                                     arrow_forward

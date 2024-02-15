@@ -1,6 +1,6 @@
 import * as Yup from "yup"
 
-export const YupAuctionValidation = Yup.object().shape({
+export const YupRegistrationValidation = Yup.object().shape({
   category: Yup.string().max(255).required(),
   make: Yup.string().max(255).required(),
   model: Yup.string().max(255).required(),
@@ -14,9 +14,12 @@ export const YupAuctionValidation = Yup.object().shape({
   name: Yup.string()
     .max(255)
     .required(),
-  starting_price: Yup.number().min(0),
+  email: Yup.string()
+    .max(255)
+    .required(),
+  years: Yup.number().min(0),
   reserveprice: Yup.number().min(0),
-  car_specification:  Yup.array().min(1, 'Please select at least one feature'),
+  software_stack:  Yup.array().min(1, 'Please select at least one stack'),
   uploaded_images: Yup.array()
   .min(1, "Minimum 1 files are required")
   .required("Files are required")

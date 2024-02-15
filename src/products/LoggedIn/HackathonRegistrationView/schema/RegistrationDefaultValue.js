@@ -1,4 +1,4 @@
-export const AuctionDefaultValue = {
+export const RegistrationDefaultValue = {
   category: "",
   make: "",
   model: "",
@@ -8,11 +8,12 @@ export const AuctionDefaultValue = {
   bestdeals: false,
   active: false,
   name: "",
-  starting_price: 0,
+  email:"",
+  years: 0,
   reserveprice: 0,
   start_time: "",
   overview: "",
-  car_specification: "",
+  software_stack: "",
   uploaded_images: "",
 
 

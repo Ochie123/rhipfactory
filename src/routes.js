@@ -4,7 +4,7 @@ import AboutUs from "../src/view/pages/AboutPage"
 import ContactUs from "layouts/pages/landing-pages/contact-us";
 //import SignIn from "layouts/pages/authentication/sign-in";
 import Presentation from "pages/Presentation";
-import PricingPage from "products/LoggedIn/pricing/PricingPage";
+//import PricingPage from "products/LoggedIn/pricing/PricingPage";
 import Places from "pages/LandingPages/Author/sections/Posts";
 import Home from "view/Homepage/Home";
 const routes = [
@@ -53,12 +53,7 @@ const routes = [
           component: <Presentation />,
         },
       
-      {
-        name: "Pricing",
-        description: "Read more",
-        route: "/pricing",
-        component: <PricingPage />,
-      },
+   
 
     ],
   },

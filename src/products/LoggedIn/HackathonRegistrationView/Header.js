@@ -31,26 +31,19 @@ const Header = ({ className, ...rest }) => {
           <Link
             variant="body1"
             color="inherit"
-            to="/reports"
+            to="/"
             component={RouterLink}
           >
-            Dashboard
+            Home
           </Link>
           <Box>
-            <Typography variant="body1" color="inherit">
-              Create Auction
+            <Typography variant="h3" color="inherit">
+              Register today
             </Typography>
           </Box>
         </Breadcrumbs>
-        <Typography variant="h4" color="textPrimary">
-          Create a new auction
-        </Typography>
       </Grid>
-      <Grid item>
-        <Button component={RouterLink} to="/list-auctions">
-          Cancel
-        </Button>
-      </Grid>
+
     </Grid>
   )
 }
