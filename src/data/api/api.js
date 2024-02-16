@@ -1,14 +1,14 @@
 const URLS = {
 
-    STACKS: "http://217.76.55.18/api/stacks/",
-    STACK: (id) => `http://217.76.55.18/api/stacks/${id}`,
+    STACKS: "https://cars-bids.online/api/stacks/",
+    STACK: (id) => `https://cars-bids.online/api/stacks/${id}`,
 
-    HEALTHCARES: "http://217.76.55.18/api/healthcares/",
-    HEALTHCARE: (id) => `http://217.76.55.18/api/healthcares/${id}`,
+    HEALTHCARES: "https://cars-bids.online/api/healthcares/",
+    HEALTHCARE: (id) => `https://cars-bids.online/api/healthcares/${id}`,
 
 
-    PRIMARYSKILLS: "http://217.76.55.18/api/primaryskills/",
-    PRIMARYSKILL: (id) => `http://217.76.55.18/api/primaryskills/${id}`,
+    PRIMARYSKILLS: "https://cars-bids.online/api/primaryskills/",
+    PRIMARYSKILL: (id) => `https://cars-bids.online/api/primaryskills/${id}`,
 
   };
   
