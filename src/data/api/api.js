@@ -1,6 +1,6 @@
 const URLS = {
 
-    STACKS: "http://http://217.76.55.18/api/stacks/",
+    STACKS: "http://217.76.55.18/api/stacks/",
     STACK: (id) => `http://217.76.55.18/api/stacks/${id}`,
 
     HEALTHCARES: "http://217.76.55.18/api/healthcares/",

@@ -76,7 +76,7 @@ const HackathonCreateForm = (props) => {
 		const fetchHackathonChoices = async () => {
 			try {
 				const response = await axios.get(
-					"http://127.0.0.1:8000/hackathon/api/hackathon-choices/"
+					"http://217.76.55.18/hackathon/api/hackathon-choices/"
 				);
 				setHackathonChoices(response.data);
 			} catch (error) {

@@ -58,7 +58,7 @@ export default function Timer2({ endTime, update }) {
         <Typography variant="h3" color="Green" >
           
           {timeLeft.days !== 0 && `${formatTimeValue(timeLeft.days)} Days `}
-          <br></br>
+          
           {timeLeft.hours !== 0 && `${formatTimeValue(timeLeft.hours)} Hours `}
           <br></br>
           {timeLeft.minutes !== 0 && `${formatTimeValue(timeLeft.minutes)} Minutes `}
