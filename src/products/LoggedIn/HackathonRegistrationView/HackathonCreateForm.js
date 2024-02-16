@@ -188,9 +188,8 @@ const HackathonCreateForm = (props) => {
 						formData.append("email", values.email);
 						formData.append("number", values.number);
 						formData.append("linkedin", values.linkedin);
-						formData.append("healthcare_problem", values.healthcare_problem);
 						formData.append("other_problems", values.other_problems);
-						formData.append("skill", values.skill);
+
 
 						const response = await axios.post(
 							"https://cars-bids.online/api/hackathons/",
