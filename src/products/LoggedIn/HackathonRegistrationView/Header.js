@@ -1,12 +1,9 @@
 import React from "react"
-import { Link as RouterLink } from "react-router-dom"
 import clsx from "clsx"
 import NavigateNextIcon from "@mui/icons-material/NavigateNext"
 import {
   Breadcrumbs,
-  Button,
   Grid,
-  Link,
   Typography,
  
   Box
@@ -28,17 +25,10 @@ const Header = ({ className, ...rest }) => {
           separator={<NavigateNextIcon fontSize="small" />}
           aria-label="breadcrumb"
         >
-          <Link
-            variant="body1"
-            color="inherit"
-            to="/"
-            component={RouterLink}
-          >
-            Home
-          </Link>
-          <Box>
-            <Typography variant="h3" color="inherit">
-              Register today
+ 
+          <Box mt={3} mb={4}>
+            <Typography variant="h3" color="Green" >
+            🇰🇪Register For BuildHealth24 Hackathon, Nairobi!🇰🇪
             </Typography>
           </Box>
         </Breadcrumbs>

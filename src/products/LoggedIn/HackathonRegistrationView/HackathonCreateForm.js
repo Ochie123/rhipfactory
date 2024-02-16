@@ -19,9 +19,9 @@ import {
 	Card,
 	CardContent,
 	CardHeader,
-	Checkbox,
+
 	Divider,
-	FormControlLabel,
+
 	FormHelperText,
 	Grid,
 	Paper,
@@ -30,30 +30,21 @@ import {
 	Typography,
 } from "@mui/material";
 import Icon from "@mui/material/Icon";
-import Stack from "@mui/material/Stack";
 
-import { Link } from "react-router-dom";
 import { styled } from "@mui/material/styles";
 
 import QuillEditor from "../../../components/Quill-Editor";
 import Timer2 from "view/Homepage/Timer2";
 import { loadStacks } from "../../../data/api/api";
 import { loadHealthcares } from "../../../data/api/api";
-import { loadHackathons } from "../../../data/api/api";
+import { loadPrimaryskills } from '../../../data/api/api';
+
+//import { loadHackathons } from "../../../data/api/api";
 import { YupRegistrationValidation } from "./schema/YupRegistrationValidation";
 import { RegistrationDefaultValue } from "./schema/RegistrationDefaultValue";
 import { useNavigate } from "react-router";
 
-const ITEM_HEIGHT = 48;
-const ITEM_PADDING_TOP = 8;
-const MenuProps = {
-	PaperProps: {
-		style: {
-			maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
-			width: 250,
-		},
-	},
-};
+
 
 const ColorButton = styled(Button)(({ theme }) => ({
 	color: theme.palette.getContrastText(yellow[500]),
@@ -66,15 +57,15 @@ const ColorButton = styled(Button)(({ theme }) => ({
 const HackathonCreateForm = (props) => {
 	const theme = useTheme();
 	const [hackathonChoices, setHackathonChoices] = useState(null);
-	const [selectedStack, setSelectedStack] = useState("");
-	const [selectedHealthcare, setSelectedHealthcare] = useState("");
-	const [selectedHackathon, setSelectedHackathon] = useState("");
 
 	const { data: softwareStacksData = [] } = useQuery("stacks", loadStacks);
 	const { data: healthcareProblemsData = [] } = useQuery(
 		"health",
 		loadHealthcares
 	);
+
+	const { data: primarySkillsData = [] } = useQuery('skills', loadPrimaryskills);
+
 
 	// const softwareStacks = softwareStacksData.results;
 	//console.log(softwareStacksData)
@@ -102,14 +93,14 @@ const HackathonCreateForm = (props) => {
 		setJustEnded(true);
 	};
 
-	const [checked, setChecked] = React.useState(true);
 
 	// Set end time for the timer (replace with your desired end time)
-	const endTime = new Date("2024-04-14T00:00:00");
+	const endTime = new Date("2024-04-30T00:00:00");
 
 	const softwareStacks = softwareStacksData;
 
 	const healthcareProblems = healthcareProblemsData;
+	const primarySkills = primarySkillsData;
 
 	function getStyles(car_specification, personCar_specification, theme) {
 		return {
@@ -123,6 +114,8 @@ const HackathonCreateForm = (props) => {
 	//const [car_specifications, setCarSpecifications] = useState([]);
 	const [personSoftware_stack, setPersonSoftware_stack] = useState([]);
 	const [personHealthcare_Problem, setpersonHealthcare_Problem] = useState([]);
+	const [personSkill, setpersonSkill] = useState([]);
+
 
 	//const [personName, setPersonName] = React.useState([]);
 
@@ -141,6 +134,10 @@ const HackathonCreateForm = (props) => {
 			typeof value === "string" ? value.split(",") : value
 		);
 		setpersonHealthcare_Problem(
+			// On autofill we get a stringified value.
+			typeof value === "string" ? value.split(",") : value
+		);
+		setpersonSkill(
 			// On autofill we get a stringified value.
 			typeof value === "string" ? value.split(",") : value
 		);
@@ -168,8 +165,14 @@ const HackathonCreateForm = (props) => {
 
 						const healthcareSpecifications = values.healthcare_problem || []; // Make sure it's an array
 
-						healthcareSpecifications.forEach((stack) => {
-							formData.append("healthcare_problem", stack);
+						healthcareSpecifications.forEach((healthcare) => {
+							formData.append("healthcare_problem", healthcare);
+						});
+
+						const skillSpecifications = values.skill || []; // Make sure it's an array
+
+						skillSpecifications.forEach((skill) => {
+							formData.append("skill", skill);
 						});
 
 						formData.append("name", values.name);
@@ -187,6 +190,7 @@ const HackathonCreateForm = (props) => {
 						formData.append("linkedin", values.linkedin);
 						formData.append("healthcare_problems", values.healthcare_problems);
 						formData.append("other_problems", values.other_problems);
+						formData.append("skill", values.skill);
 
 						const response = await axios.post(
 							"http://127.0.0.1:8000/api/hackathons/",
@@ -206,7 +210,7 @@ const HackathonCreateForm = (props) => {
 								variant: "success",
 							}
 						);
-						navigate("/");
+						navigate("/registration-successful");
 					} catch (err) {
 						alert("Something happened. Please try again.");
 						setError(err.message);
@@ -341,7 +345,7 @@ const HackathonCreateForm = (props) => {
 												for Kenyans?
 											</Typography>
 
-											<FormControl sx={{ m: 1, width: 300 }}>
+											<FormControl sx={{ m: 1, width: 500 }}>
 												<InputLabel id="demo-multiple-chip-label">
 													Healthcare Problems
 												</InputLabel>
@@ -431,6 +435,7 @@ const HackathonCreateForm = (props) => {
 												onChange={(value) =>
 													formikProps.setFieldValue("other_problems", value)
 												}
+												
 											/>
 										</Paper>
 										{formikProps.touched.other_problems &&
@@ -438,6 +443,7 @@ const HackathonCreateForm = (props) => {
 												<Box mt={2}>
 													<FormHelperText error>
 														{formikProps.errors.other_problems}
+														
 													</FormHelperText>
 												</Box>
 											)}
@@ -500,7 +506,7 @@ const HackathonCreateForm = (props) => {
 													}
 													variant="outlined"
 												>
-													<MenuItem value="">Select your Sex</MenuItem>
+													<MenuItem value="">Gender</MenuItem>
 													{hackathonChoices.sex_choices.map(
 														([value, label]) => (
 															<MenuItem key={value} value={value}>
@@ -550,6 +556,14 @@ const HackathonCreateForm = (props) => {
 													select
 													value={formikProps.values.experience}
 													onChange={formikProps.handleChange}
+													error={
+														formikProps.touched.experience &&
+														Boolean(formikProps.errors.experience)
+													}
+													helperText={
+														formikProps.touched.experience &&
+														formikProps.errors.experience
+													}
 													variant="outlined"
 												>
 													<MenuItem value="">
@@ -570,6 +584,10 @@ const HackathonCreateForm = (props) => {
 														formikProps.touched.supported_years &&
 															formikProps.errors.supported_years
 													)}
+													helperText={
+														formikProps.touched.supported_years &&
+														formikProps.errors.supported_years
+													}
 													fullWidth
 													label="Supported years"
 													name="supported_years"
@@ -596,6 +614,10 @@ const HackathonCreateForm = (props) => {
 														formikProps.touched.hear_us &&
 															formikProps.errors.hear_us
 													)}
+													helperText={
+														formikProps.touched.hear_us &&
+														formikProps.errors.hear_us
+													}
 													fullWidth
 													label="Hear us"
 													name="hear_us"
@@ -616,12 +638,95 @@ const HackathonCreateForm = (props) => {
 											</div>
 										)}
 									</CardContent>
-
 									<CardContent>
-										<div>
+										<div>	
 											<FormControl sx={{ m: 1, width: 300 }}>
 												<InputLabel id="demo-multiple-chip-label">
-													Your Stack
+													Primary Skills
+												</InputLabel>
+												<Field
+													as={Select}
+													labelId="demo-multiple-chip-label"
+													id="demo-multiple-chip"
+													multiple
+													name="skill"
+													input={
+														<OutlinedInput
+															id="select-multiple-chip"
+															label="Chip"
+														/>
+													}
+													onBlur={formikProps.handleBlur}
+													error={
+														formikProps.touched.skill &&
+														Boolean(formikProps.errors.skill)
+													}
+													helperText={
+														formikProps.touched.skill &&
+														formikProps.errors.skill
+													}
+													variant="outlined"
+													renderValue={(selected) => (
+														<Box
+															sx={{
+																display: "flex",
+																flexWrap: "wrap",
+																gap: 0.5,
+															}}
+														>
+															{selected.map((value) => {
+																const primarySkill =
+																	primarySkills.find(
+																		(spec) => spec.id === value
+																	);
+																return (
+																	<Chip
+																		key={value}
+																		onDelete={handleDelete(value)}
+																		label={
+																			primarySkill
+																				? primarySkill.name
+																				: ""
+																		}
+																	/>
+																);
+															})}
+														</Box>
+													)}
+													onChange={(event) => {
+														formikProps.setFieldValue(
+															"skill",
+															event.target.value
+														);
+													}}
+													value={formikProps.values.skill || []}
+												>
+													{primarySkills.map((skill) => (
+														<MenuItem
+															key={skill.id}
+															value={skill.id}
+															style={getStyles(
+																skill,
+																personSkill,
+																theme
+															)}
+														>
+															{skill.name}
+														</MenuItem>
+													))}
+												</Field>
+											</FormControl>
+													</div>
+									</CardContent>
+
+									<Divider />
+									<br />
+									<CardContent>
+										<div>
+
+											<FormControl sx={{ m: 1, width: 300 }}>
+												<InputLabel id="demo-multiple-chip-label">
+													Stack
 												</InputLabel>
 												<Field
 													as={Select}
@@ -699,11 +804,11 @@ const HackathonCreateForm = (props) => {
 									<br />
 
 									{currentDate < new Date(endTime) ? (
-										<ColorButton variant="contained">
-											<Typography variant="h2" color="Green">
+										
+										<Typography variant="h3" color="Green" >
 												<Timer2 endTime={endTime} update={update} />
 											</Typography>
-										</ColorButton>
+										
 									) : (
 										<div
 											style={{
@@ -724,16 +829,35 @@ const HackathonCreateForm = (props) => {
 							</Box>
 						)}
 						<Box mt={2}>
-							<ColorButton
-								variant="contained"
-								type="submit"
-								disabled={formikProps.isSubmitting}
-							>
-								<Typography component="p" variant="h8">
-									Register today
-								</Typography>
-								<Icon sx={{ fontWeight: "bold" }}>arrow_forward</Icon>{" "}
-							</ColorButton>
+						{currentDate < new Date(endTime) ? (
+    <ColorButton
+        variant="contained"
+        type="submit"
+        disabled={formikProps.isSubmitting}
+    >
+        <Typography component="p" variant="h8">
+            Register today
+        </Typography>
+        <Icon sx={{ fontWeight: "bold" }}>arrow_forward</Icon>{" "}
+    </ColorButton>
+) : (
+    <div
+        style={{
+            bottom: "-20px",
+            left: "0",
+            padding: "15px",
+        }}
+    >
+		    <ColorButton
+        variant="contained"
+        type="submit"
+        disabled={formikProps.isSubmitting}
+    >
+        <Typography>Registration ended</Typography>
+		</ColorButton>
+    </div>
+)}
+
 						</Box>
 					</form>
 				)}

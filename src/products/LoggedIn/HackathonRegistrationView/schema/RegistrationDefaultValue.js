@@ -13,4 +13,5 @@ export const RegistrationDefaultValue = {
   other_problems:"",
   healthcare_problem: "",
   software_stack: "",
+  skill:"",
 }

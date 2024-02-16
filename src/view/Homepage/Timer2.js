@@ -55,12 +55,15 @@ export default function Timer2({ endTime, update }) {
   return (
     <Subheading>
       {!timeLeft.timeEnd ? (
-        <Typography component="p" variant="h8">
+        <Typography variant="h3" color="Green" >
           
-          {timeLeft.days !== 0 && `${formatTimeValue(timeLeft.days)}Days `}
-          {timeLeft.hours !== 0 && `${formatTimeValue(timeLeft.hours)}Hours `}
-          {timeLeft.minutes !== 0 && `${formatTimeValue(timeLeft.minutes)}Minutes `}
-          {`${formatTimeValue(timeLeft.seconds)}Seconds`}
+          {timeLeft.days !== 0 && `${formatTimeValue(timeLeft.days)} Days `}
+          <br></br>
+          {timeLeft.hours !== 0 && `${formatTimeValue(timeLeft.hours)} Hours `}
+          <br></br>
+          {timeLeft.minutes !== 0 && `${formatTimeValue(timeLeft.minutes)} Minutes `}
+          <br></br>
+          {`${formatTimeValue(timeLeft.seconds)} Seconds`}
         </Typography>
       ) : (
         <Typography component="p" variant="h3">

@@ -7,8 +7,8 @@ const URLS = {
     HEALTHCARE: (id) => `http://127.0.0.1:8000/api/healthcares/${id}`,
 
 
-    HACKATHONS: "http://127.0.0.1:8000/api/hackathons/",
-    HACKATHON: (id) => `http://127.0.0.1:8000/api/hackathons/${id}`,
+    PRIMARYSKILLS: "http://127.0.0.1:8000/api/primaryskills/",
+    PRIMARYSKILL: (id) => `http://127.0.0.1:8000/api/primaryskills/${id}`,
 
   };
   
@@ -37,6 +37,9 @@ const URLS = {
   const loadHackathons = () => get(URLS.HACKATHONS);
   const loadHackathon = (id) => get(URLS.STACK(id));
 
+  const loadPrimaryskills = () => get(URLS.PRIMARYSKILLS);
+  const loadPrimaryskill = (id) => get(URLS.PRIMARYSKILL(id));
+
   
   export {
 
@@ -50,6 +53,7 @@ const URLS = {
     loadHackathons,
     loadHackathon,
 
-  
+    loadPrimaryskills,
+    loadPrimaryskill,
   };
   

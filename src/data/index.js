@@ -16,3 +16,9 @@ export { default as useAllHackathons } from "./hackathons/useAllHackathons";
 export { default as useThisHackathon } from "./hackathons/useThisHackathon";
 export { default as useThatHackathon } from "./hackathons/useThatHackathon";
 export { default as useHasCurrentHackathon } from "./hackathons/useHasCurrentHackathon";
+
+// Importing primary skills-related hooks
+export { default as useAllPrimaryskills } from "./primaryskills/useAllPrimarySkills"
+export { default as useThisPrimaryskill } from "./primaryskills/useThisPrimarySkill";
+export { default as useThatPrimaryskill } from "./primaryskills/useThatPrimarySkill";
+export { default as useHasCurrentPrimaryskill } from "./primaryskills/useHasCurrentPrimarySkill";

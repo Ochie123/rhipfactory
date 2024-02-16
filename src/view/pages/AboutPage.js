@@ -1,62 +1,37 @@
-
-// @mui material components
-import Card from "@mui/material/Card";
+import React from 'react';
 import Container from "@mui/material/Container";
-// Material Kit 2 React components
 import Grid from "@mui/material/Grid";
-
-
-import Page from '../../../src/components/Page'
-
-
-// About Us page sections
-import MKBox from "components/MKBox";
-import MKTypography from "components/MKTypography";
+import Typography from '@mui/material/Typography';
+import Box from '@mui/material/Box';
+import Page from '../../../src/components/Page';
 
 const AboutPage = () => {
-
-
   return (
-    <>
-    <Page title="About - RhipFactory">
-    <MKBox
-  
-      >
+    <Page title="Register successful">
+      <Box>
         <Container>
           <Grid container item xs={12} lg={7} justifyContent="center" mx="auto">
-            <MKTypography
+            <Typography
               variant="h1"
               color="green"
-              mt={-6}
-              mb={1}
-              sx={({ breakpoints, typography: { size } }) => ({
-                [breakpoints.down("md")]: {
-                  fontSize: size["3xl"],
-                },
-              })}
+           
             >
-              About Us
-            </MKTypography>
-      
+             Register Successful 👍
+            </Typography>
           </Grid>
         </Container>
-      </MKBox>
-      <Card
-        sx={{
-          p: 2,
-          mx: { xs: 2, lg: 3 },
-          mt: -8,
-          mb: 4,
-          boxShadow: ({ boxShadows: { xxl } }) => xxl,
-        }}
-      >
-   
-  
+      </Box>
+      <Container maxWidth="md">
+      <br></br>
+
+          <Typography variant="body1" gutterBottom>
+            Welcome to RhipFactory! We have recorded your details! We'll notify you if selected and Good Luck.
+          </Typography>
+
+       
     
-      </Card>
-     
-      </Page>
-    </>
+      </Container>
+    </Page>
   );
 }
 
