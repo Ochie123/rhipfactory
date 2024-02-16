@@ -1,14 +1,14 @@
 const URLS = {
 
-    STACKS: "http://127.0.0.1:8000/api/stacks/",
-    STACK: (id) => `http://127.0.0.1:8000/api/stacks/${id}`,
+    STACKS: "http://http://217.76.55.18/api/stacks/",
+    STACK: (id) => `http://217.76.55.18/api/stacks/${id}`,
 
-    HEALTHCARES: "http://127.0.0.1:8000/api/healthcares/",
-    HEALTHCARE: (id) => `http://127.0.0.1:8000/api/healthcares/${id}`,
+    HEALTHCARES: "http://217.76.55.18/api/healthcares/",
+    HEALTHCARE: (id) => `http://217.76.55.18/api/healthcares/${id}`,
 
 
-    PRIMARYSKILLS: "http://127.0.0.1:8000/api/primaryskills/",
-    PRIMARYSKILL: (id) => `http://127.0.0.1:8000/api/primaryskills/${id}`,
+    PRIMARYSKILLS: "http://217.76.55.18/api/primaryskills/",
+    PRIMARYSKILL: (id) => `http://217.76.55.18/api/primaryskills/${id}`,
 
   };
   

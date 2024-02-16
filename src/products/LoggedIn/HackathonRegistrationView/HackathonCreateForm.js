@@ -193,7 +193,7 @@ const HackathonCreateForm = (props) => {
 						formData.append("skill", values.skill);
 
 						const response = await axios.post(
-							"http://127.0.0.1:8000/api/hackathons/",
+							"http://217.76.55.18/api/hackathons/",
 							formData,
 							{
 								headers: {
