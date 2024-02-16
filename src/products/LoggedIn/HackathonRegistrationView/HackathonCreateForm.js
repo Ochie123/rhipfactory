@@ -344,7 +344,7 @@ const HackathonCreateForm = (props) => {
 												for Kenyans?
 											</Typography>
 
-											<FormControl sx={{ m: 1, width: 500 }}>
+											<FormControl sx={{ m: 1, width: 300 }}>
 												<InputLabel id="demo-multiple-chip-label">
 													Healthcare Problems
 												</InputLabel>
