@@ -76,7 +76,7 @@ const HackathonCreateForm = (props) => {
 		const fetchHackathonChoices = async () => {
 			try {
 				const response = await axios.get(
-					"https://cars-bids.online/hackathon/api/hackathon-choices/"
+					"https://www.rhipfactory.online/hackathon/api/hackathon-choices/"
 				);
 				setHackathonChoices(response.data);
 			} catch (error) {
@@ -192,7 +192,7 @@ const HackathonCreateForm = (props) => {
 
 
 						const response = await axios.post(
-							"https://cars-bids.online/api/hackathons/",
+							"https://www.rhipfactory.online/api/hackathons/",
 							formData,
 							{
 								headers: {
