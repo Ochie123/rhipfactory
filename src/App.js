@@ -6,9 +6,9 @@ import 'react-quill/dist/quill.snow.css';
 import { SnackbarProvider } from 'notistack';
 import Helmet from 'react-helmet';
 import { LinearProgress } from '@mui/material';
-import "../src/view/Detail/scss/astro-ecommerce.scss"
-import "../src/Layout/main-layout/Layout.scss"
-//import "../src/view/Detail/style.css"
+
+import "../src/view/Detail/style.css"
+
 //import Homepage from './view/Homepage';
 import MainLayout from '../src/Layout/main-layout/MainLayout'
 

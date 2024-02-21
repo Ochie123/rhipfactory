@@ -27,7 +27,8 @@ const Header = ({ className, ...rest }) => {
         >
  
           <Box mt={3} mb={4}>
-            <Typography variant="h3" color="Green" >
+
+            <Typography variant="h3" color="White" >
             🇰🇪Register For BuildHealth24 Hackathon, Nairobi!🇰🇪
             </Typography>
           </Box>

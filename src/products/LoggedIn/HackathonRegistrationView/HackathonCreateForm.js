@@ -11,7 +11,7 @@ import InputLabel from "@mui/material/InputLabel";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import Chip from "@mui/material/Chip";
-import { yellow } from "@mui/material/colors";
+import { red } from "@mui/material/colors";
 
 import {
 	Box,
@@ -47,10 +47,10 @@ import { useNavigate } from "react-router";
 
 
 const ColorButton = styled(Button)(({ theme }) => ({
-	color: theme.palette.getContrastText(yellow[500]),
-	backgroundColor: yellow[500],
+	color: theme.palette.getContrastText(red[500]),
+	backgroundColor: red[500],
 	"&:hover": {
-		backgroundColor: yellow[700],
+		backgroundColor: red[700],
 	},
 }));
 
@@ -179,6 +179,7 @@ const HackathonCreateForm = (props) => {
 						formData.append("overview", values.overview);
 
 						// formData.append('car_specification', values.car_specification);
+						formData.append("cities_kenya", values.cities_kenya);
 						formData.append("supported_years", values.supported_years);
 						formData.append("supported_ages", values.supported_ages);
 						formData.append("sex_choices", values.sex_choices);
@@ -458,6 +459,35 @@ const HackathonCreateForm = (props) => {
 									<CardContent>
 										{hackathonChoices && (
 											<div>
+												<TextField
+													fullWidth
+													label="City"
+													name="cities_kenya"
+													select
+													value={formikProps.values.cities_kenya}
+													onChange={formikProps.handleChange}
+													onBlur={formikProps.handleBlur}
+													error={
+														formikProps.touched.cities_kenya &&
+														Boolean(formikProps.errors.cities_kenya)
+													}
+													helperText={
+														formikProps.touched.cities_kenya &&
+														formikProps.errors.cities_kenya
+													}
+													variant="outlined"
+												>
+													<MenuItem value="">Select your city</MenuItem>
+													{hackathonChoices.cities_kenya.map(
+														([value, label]) => (
+															<MenuItem key={value} value={value}>
+																{label}
+															</MenuItem>
+														)
+													)}
+												</TextField>
+												<Divider />
+												<br />
 												<TextField
 													fullWidth
 													label="Age"

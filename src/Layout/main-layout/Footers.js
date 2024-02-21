@@ -71,7 +71,7 @@ function Footers({ links, socials, light}){
             <div className="row justify-content-center">
 
             <img
-    src="/images/RHIPFactory-logo.png"
+    src="/images/rhipfactory.png"
     alt="Promotional"
     style={{
       width: "100%", // Change width to 100% for responsiveness

@@ -4,6 +4,7 @@ export const YupRegistrationValidation = Yup.object().shape({
   supported_ages: Yup.string().max(255).required(),
   supported_years: Yup.string().max(255).required(),
   sex_choices: Yup.string().max(255).required(),
+  cities_kenya: Yup.string().max(255).required(),
   participation: Yup.string().max(255).required(),
   experience: Yup.string().max(5000).required(),
   hear_us: Yup.string().max(5000).required(),

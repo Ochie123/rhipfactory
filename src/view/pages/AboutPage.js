@@ -10,11 +10,10 @@ const AboutPage = () => {
     <Page title="Register successful">
       <Box>
         <Container>
-          <Grid container item xs={12} lg={7} justifyContent="center" mx="auto">
+          <Grid container item xs={10} lg={7} justifyContent="center" mx="auto">
             <Typography
               variant="h1"
               color="green"
-           
             >
              Register Successful 👍
             </Typography>
@@ -22,14 +21,15 @@ const AboutPage = () => {
         </Container>
       </Box>
       <Container maxWidth="md">
-      <br></br>
-
-          <Typography variant="body1" gutterBottom>
-            Welcome to RhipFactory! We have recorded your details! We'll notify you if selected and Good Luck.
-          </Typography>
-
-       
-    
+        <br />
+        <Typography variant="body1" gutterBottom>
+          Welcome to RhipFactory! We have recorded your details! We'll notify you if selected and Good Luck.
+        </Typography>
+        <br></br>
+        <Typography variant="h5" gutterBottom>
+          Visit our homepage for more information: {' '}
+          <a href="https://rhipfactory.co.ke" target="_blank" rel="noopener noreferrer">rhipfactory.co.ke</a>
+        </Typography>
       </Container>
     </Page>
   );

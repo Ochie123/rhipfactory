@@ -2,11 +2,6 @@ import React, { useState, useEffect } from 'react';
 import Typography from '@mui/material/Typography';
 import { styled } from '@mui/material/styles';
 
-const Subheading = styled('div')(({ theme }) => ({
-  margin: '16px',
-  color: theme.palette.openTitle,
-}));
-
 const calculateTimeLeft = (endTime) => {
   const difference = endTime - new Date();
   let timeLeft = {};
@@ -24,6 +19,10 @@ const calculateTimeLeft = (endTime) => {
   }
   return timeLeft;
 };
+
+const StyledTimer = styled('section')(({ theme }) => ({
+  // Your existing styles
+}));
 
 export default function Timer2({ endTime, update }) {
   const [timeLeft, setTimeLeft] = useState(
@@ -53,23 +52,36 @@ export default function Timer2({ endTime, update }) {
   };
 
   return (
-    <Subheading>
+    <StyledTimer className={`timer ${timeLeft.seconds !== 0 ? 'timer-ticking' : ''}`}>
       {!timeLeft.timeEnd ? (
-        <Typography variant="h3" color="Green" >
-          
-          {timeLeft.days !== 0 && `${formatTimeValue(timeLeft.days)} Days `}
-          
-          {timeLeft.hours !== 0 && `${formatTimeValue(timeLeft.hours)} Hours `}
-          <br></br>
-          {timeLeft.minutes !== 0 && `${formatTimeValue(timeLeft.minutes)} Minutes `}
-          <br></br>
-          {`${formatTimeValue(timeLeft.seconds)} Seconds`}
-        </Typography>
+        <>
+          <ul className="parts">
+            <li className="part">
+              <p className="number">{timeLeft.days !== 0 && `${formatTimeValue(timeLeft.days)}`}</p>
+              <p className="unit">Days</p>
+            </li>
+            <li className="colon">:</li>
+            <li className="part">
+              <p className="number">{timeLeft.hours !== 0 && `${formatTimeValue(timeLeft.hours)}`}</p>
+              <p className="unit">Hours</p>
+            </li>
+            <li className="colon">:</li>
+            <li className="part">
+              <p className="number"> {timeLeft.minutes !== 0 && `${formatTimeValue(timeLeft.minutes)}`}</p>
+              <p className="unit">Minutes</p>
+            </li>
+            <li className="colon">:</li>
+            <li className="part">
+              <p className="number"> {`${formatTimeValue(timeLeft.seconds)}`}</p>
+              <p className="unit">Seconds</p>
+            </li>
+          </ul>
+        </>
       ) : (
         <Typography component="p" variant="h3">
           Registration ended
         </Typography>
       )}
-    </Subheading>
+    </StyledTimer>
   );
 }

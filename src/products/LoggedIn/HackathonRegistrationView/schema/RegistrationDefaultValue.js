@@ -1,5 +1,6 @@
 export const RegistrationDefaultValue = {
   supported_ages: "",
+  cities_kenya: "",
   supported_years: "",
   sex_choices: "",
   participation: "",
