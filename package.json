@@ -22,7 +22,7 @@
     "@testing-library/jest-dom": "5.16.5",
     "@testing-library/react": "14.0.0",
     "@testing-library/user-event": "14.4.3",
-    "@vercel/analytics": "^1.1.1",
+    "@vercel/analytics": "^1.2.2",
     "axios": "^1.6.7",
     "bootstrap": "^5.3.2",
     "chroma-js": "2.4.2",
@@ -59,7 +59,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "set GENERATE_SOURCEMAP=false && node scripts/build.js",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "lint": "eslint ./src",
