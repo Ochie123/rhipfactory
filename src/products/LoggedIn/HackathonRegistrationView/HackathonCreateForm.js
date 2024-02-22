@@ -34,7 +34,6 @@ import Icon from "@mui/material/Icon";
 import { styled } from "@mui/material/styles";
 
 import QuillEditor from "../../../components/Quill-Editor";
-import Timer2 from "view/Homepage/Timer2";
 import { loadStacks } from "../../../data/api/api";
 import { loadHealthcares } from "../../../data/api/api";
 import { loadPrimaryskills } from '../../../data/api/api';
@@ -88,14 +87,14 @@ const HackathonCreateForm = (props) => {
 	}, []);
 
 	const [justEnded, setJustEnded] = useState(false);
-	const currentDate = new Date();
+    const currentDate = new Date();
 	const update = () => {
 		setJustEnded(true);
 	};
 
 
 	// Set end time for the timer (replace with your desired end time)
-	const endTime = new Date("2024-04-30T00:00:00");
+	const endTime = new Date("2024-04-02T00:00:00");
 
 	const softwareStacks = softwareStacksData;
 
@@ -832,23 +831,7 @@ const HackathonCreateForm = (props) => {
 									<Divider />
 									<br />
 
-									{currentDate < new Date(endTime) ? (
-										
-										<Typography variant="h3" color="Green" >
-												<Timer2 endTime={endTime} update={update} />
-											</Typography>
-										
-									) : (
-										<div
-											style={{
-												bottom: "-20px",
-												left: "0",
-												padding: "15px",
-											}}
-										>
-											<Typography>Registration ended</Typography>
-										</div>
-									)}
+	
 								</Card>
 							</Grid>
 						</Grid>
@@ -857,7 +840,23 @@ const HackathonCreateForm = (props) => {
 								<FormHelperText error>{error}</FormHelperText>
 							</Box>
 						)}
-						<Box mt={2}>
+						
+						<Grid item xs={12} lg={8}>
+						<Box
+   
+   
+    sx={{
+
+      backgroundPosition: "left",
+     
+     
+      m: -5,  // Set margin to zero
+      p: -3,  // Set padding to zero
+	  mr: -2,
+	  px: 5,
+	
+    }}
+  >
 						{currentDate < new Date(endTime) ? (
     <ColorButton
         variant="contained"
@@ -886,8 +885,9 @@ const HackathonCreateForm = (props) => {
 		</ColorButton>
     </div>
 )}
-
-						</Box>
+</Box>
+						</Grid>
+					
 					</form>
 				)}
 			</Formik>

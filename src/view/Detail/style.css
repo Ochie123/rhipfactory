@@ -31,14 +31,8 @@ html,
 }
 
 .timer {
-  color: rgb(254, 5, 5);
-  padding: 0px;
-  background: rgba(3, 3, 3, 0.1);
-  border-radius: 1px;
-  display: flex;
-  gap: 1px;
-  align-items: center;
-  width: 400px;
+  color: rgb(254, 253, 253);
+
 }
 
 .timer-ringing {

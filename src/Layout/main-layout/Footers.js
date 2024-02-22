@@ -1,126 +1,53 @@
-// @mui material components
-import PropTypes from "prop-types";
 import React from 'react';
-
 import Grid from "@mui/material/Grid";
-import Stack from "@mui/material/Stack";
-
 import { Box } from "@mui/joy";
-//import {Typography} from "@mui/joy";
-import {Typography} from "@mui/material"
-// @mui icons
-import FacebookIcon from "@mui/icons-material/Facebook";
-import TwitterIcon from "@mui/icons-material/Twitter";
-import InstagramIcon from "@mui/icons-material/Instagram";
+import { Typography } from "@mui/material"
 
-function Footers({ links, socials, light}){
-
+function Footers(){
     const year = new Date().getFullYear();
 
-    const renderLinks = links.map((link) => (
-        <Typography
-          key={link.name}
-          variant="body2"
-          color={ "white"}
-          fontWeight="regular"
-        >
-          {link.name}
-        </Typography>
-      ));
-    
-      const renderSocials = socials.map((social) => (
-        <Typography
-
-        variant="body2"
-        color={light ? "white" : "secondary"}
-        fontWeight="regular"
-      >
-        {social.icon}
-        </Typography>
-      ));
-    
     return (
-        <Box component="footer" py={6}>
-          <Grid container justifyContent="center">
-            <Grid item xs={10} lg={8}>
-              <Stack
-                direction="row"
-                flexWrap="wrap"
-                justifyContent="center"
-                spacing={{ xs: 2, lg: 3, xl: 6 }}
-                mb={3}
-              >
-                {renderLinks}
-              </Stack>
+        <Box
+            minHeight="20vh"
+            width="100%"
+            sx={{
+                backgroundColor: "maroon", // Set the background color to maroon
+                color: "white", // Set text color to white
+                position: "static", // Set the position to fixed
+                bottom: 0, // Align the footer to the bottom of the viewport
+                left: 0, // Align the footer to the left of the viewport
+                width: "100%", // Set width to 100% to cover the entire viewport width
+                zIndex: 1000, // Set a high z-index to ensure the footer appears on top of other content
+                display: "grid",
+                placeItems: "center",
+                m: 0,  // Set margin to zero
+                p: 6,  // Set padding to zero
+            }}
+        >
+            <Grid container justifyContent="center">
+                <Grid item xs={12} lg={8} sx={{ textAlign: "center" }}>
+                    <Typography variant="body2">
+                        <div className="row justify-content-center">
+                            <img
+                                src="/images/rhipfactory.jpeg"
+                                alt="Promotional"
+                                style={{
+                                    width: "100%", // Change width to 100% for responsiveness
+                                    border: "0",
+                                    height: "auto", // Allow the height to adjust accordingly
+                                    maxWidth: "200px", // Limit maximum width to maintain aspect ratio
+                                    maxHeight: "200px" // Limit maximum height to maintain aspect ratio
+                                }}
+                            />
+                        </div>
+                    </Typography>
+                    <Typography variant="body2">
+                        Copyright &copy; {year} by{" RHIPFactory"}
+                    </Typography>
+                </Grid>
             </Grid>
-            <Grid item xs={12} lg={8}>
-              <Stack display="flex" direction="row" justifyContent="center" spacing={3} mt={1} mb={3}>
-              {renderSocials}
-              </Stack>
-            </Grid>
-            <Grid item xs={12} lg={8} sx={{ textAlign: "center" }}>
-              <Typography variant="body2" color={ "white"}>
-                Copyright &copy; {year} by{" "}
-                <Typography
-                 
-                  target="_blank"
-                  rel="noreferrer"
-                  variant="body2"
-                  color={ "white"}
-                >
-            <div className="row justify-content-center">
-
-            <img
-    src="/images/rhipfactory.png"
-    alt="Promotional"
-    style={{
-      width: "100%", // Change width to 100% for responsiveness
-      border: "0",
-      height: "auto", // Allow the height to adjust accordingly
-      maxWidth: "200px", // Limit maximum width to maintain aspect ratio
-      maxHeight: "200px" // Limit maximum height to maintain aspect ratio
-    }}
-  />
-          </div>
-                </Typography>
-                
-              </Typography>
-            </Grid>
-          </Grid>
         </Box>
-      );
+    );
 }
-
-Footers.defaultProps = {
-    company: {  name: "Assess" },
-    links: [
-      {  name: "Company" },
-      { name: "About Us" },
-      { name: "Products" },
-
-    ],
-    socials: [
-      { icon: <FacebookIcon fontSize="small" />,  
-  },
-      {
-        icon: <TwitterIcon fontSize="small" />,
-    
-      },
-      {
-        icon: <InstagramIcon fontSize="small" />,
-        
-      },
-
-    ],
-    light: true,
-  };
-  
- 
-Footers.propTypes = {
-    company: PropTypes.objectOf(PropTypes.string),
-    links: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.object])),
-    socials: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.object])),
-    light: PropTypes.bool,
-  };
 
 export default Footers;

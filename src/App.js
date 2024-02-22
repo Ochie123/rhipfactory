@@ -8,6 +8,7 @@ import Helmet from 'react-helmet';
 import { LinearProgress } from '@mui/material';
 
 import "../src/view/Detail/style.css"
+//import "../src/view/Detail/scss/astro-ecommerce.scss"
 
 //import Homepage from './view/Homepage';
 import MainLayout from '../src/Layout/main-layout/MainLayout'

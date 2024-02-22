@@ -2,15 +2,21 @@ import * as React from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
-import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
-import Menu from '@mui/material/Menu';
-import MenuIcon from '@mui/icons-material/Menu';
+import { red } from "@mui/material/colors";
 import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
-import MenuItem from '@mui/material/MenuItem';
+import { styled } from "@mui/material/styles";
 
-const pages = ['About'];
+const ColorButton = styled(Button)(({ theme }) => ({
+	color: theme.palette.getContrastText(red[500]),
+	backgroundColor: red[500],
+	"&:hover": {
+		backgroundColor: red[700],
+	},
+}));
+
+
 
 function ResponsiveAppBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -24,7 +30,7 @@ function ResponsiveAppBar() {
   };
 
   return (
-    <AppBar position="static">
+    <AppBar position="static" sx={{ backgroundColor: 'white' }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Typography
@@ -40,12 +46,12 @@ function ResponsiveAppBar() {
               fontFamily: 'monospace',
               fontWeight: 700,
               letterSpacing: '.3rem',
-              color: 'inherit',
+              color: 'black', // Change color to black for visibility on white background
               textDecoration: 'none',
             }}
           >
             <img
-              src="/images/rhipfactory.jpeg"
+              src="/images/RHIPFactory-logo.png"
               alt="Promotional"
               style={{
                 width: '100%',
@@ -56,30 +62,27 @@ function ResponsiveAppBar() {
               }}
             />
           </Typography>
-
-          <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'flex' } }}>
+          <Box sx={{ flexGrow: 8 }} /> {/* This box pushes the Homepage Typography to the right */}
           <Typography
             variant="h6"
             noWrap
             component="a"
-            href="https://rhipfactory.co.ke" // External link for the "Home" page
-            target="_blank" // Open link in a new tab
-            rel="noopener noreferrer" // Recommended for security
+            href="https://rhipfactory.co.ke"// Change this to the actual URL of your homepage
             sx={{
-              mr: 2,
-              display: { xs: 'flex', md: 'flex' },
+              display: { xs: 'flex', md: 'flex' }, // Display only on medium screens and above
               fontFamily: 'monospace',
               fontWeight: 700,
               letterSpacing: '.3rem',
-              color: 'inherit',
+              color: 'black', // Change color to black for visibility on white background
               textDecoration: 'none',
             }}
           >
-           Home
+            		    <ColorButton
+                     >
+        <Typography>Homepage</Typography>
+		</ColorButton>
+            
           </Typography>
-          </Box>
-
-
         </Toolbar>
       </Container>
     </AppBar>

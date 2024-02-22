@@ -11,13 +11,15 @@ const MainLayout = ({ children } ) => {
     return (
         <>   
       <NavigationBar/>
-        <Box>
+       
         <div className="true">{children}
         <Analytics />
         </div>
-        </Box>
-        <Divider/>
+       
+       
+        <Box mt={9} mb={9} >
         <Footers/>      
+        </Box>
         </>
     )
 }

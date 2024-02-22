@@ -1,5 +1,13 @@
 import React from 'react';
-import { Container} from "@mui/material"
+import {
+
+  Typography,
+  Container,
+  Card,
+	CardContent,
+	CardHeader,
+  Box
+} from "@mui/material"
 
 import Header from './Header';
 import HackathonCreateForm from './HackathonCreateForm';
@@ -9,8 +17,23 @@ const HackathonCreateView = () => {
 
   return (
     <Page className="" title="Register Form">
+      <Header />
       <Container maxWidth="lg">
-        <Header />
+      <br></br>
+
+<Box mt={1} mb={1} >
+
+<Card>
+<CardHeader
+  title={<Typography variant="h5" style={{ fontWeight: "bold" }}>REGISTRATION FORM</Typography>}
+/>
+        <CardContent>
+          <Typography variant="body1" >
+Fill in the required field to register for the upcoming BuildHealth24 Hackathon
+          </Typography>
+      </CardContent>
+        </Card>
+</Box>
         <HackathonCreateForm />
       </Container>
     </Page>
